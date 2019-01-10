@@ -1,0 +1,78 @@
+<!-- BEGIN: Left Aside -->
+
+<!-- <div mMenuAsideOffcanvas id="m_aside_left" class="m-grid__item m-aside-left" [ngClass]="asideLeftClasses"> -->
+<!-- BEGIN: Aside Menu -->
+<div mMenuAside (mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)" id="m_ver_menu" class="m-aside-menu" m-menu-vertical="1" [ngClass]="classInitService.onClassesUpdated$ | async | mGetObject:'aside_menu' | mJoin" [attr.m-menu-dropdown]="classInitService.onAttributeUpdated$ | async | mGetObject:'aside_menu.m-menu-dropdown'" [attr.m-menu-dropdown-timeout]="classInitService.onAttributeUpdated$ | async | mGetObject:'aside_menu.m-menu-dropdown-timeout'" [attr.m-menu-scrollable]="classInitService.onAttributeUpdated$ | async | mGetObject:'aside_menu.m-menu-scrollable'">
+	<ul class="m-menu__nav" [ngClass]="classInitService.onClassesUpdated$ | async | mGetObject:'aside_menu_nav' | mJoin">
+		<ng-container [ngTemplateOutlet]="mMenuListing"></ng-container>
+	</ul>
+</div>
+<!-- END: Aside Menu -->
+<!-- </div> -->
+
+<ng-template #mMenuListing>
+	<ng-container *ngFor="let child of menuAsideService.menuList$ | async">
+		<m-menu-section *ngIf="child.section" [item]="child"></m-menu-section>
+		<ng-container *ngIf="child.title" [ngTemplateOutlet]="mMenuItem" [ngTemplateOutletContext]="{ item: child, parentItem: item }"></ng-container>
+	</ng-container>
+</ng-template>
+
+<ng-template #mMenuItem let-item="item" let-parentItem="parentItem">
+	<li class="m-menu__item" [ngClass]="{ 'm-menu__item--submenu': item.submenu, 'm-menu__item--active' : !item.submenu && isMenuItemIsActive(item), 'm-menu__item--open' : item.submenu && isMenuItemIsActive(item) }" aria-haspopup="true">
+
+		<!-- if menu item hasn't submenu -->
+		<a *ngIf="!item.submenu" [routerLink]="item.page" class="m-menu__link m-menu__toggle">
+			<ng-container [ngTemplateOutlet]="mMenuItemText" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
+		</a>
+		<!-- if menu item has sumnenu child  -->
+		<a href="javascript:;" *ngIf="item.submenu" class="m-menu__link m-menu__toggle">
+			<ng-container [ngTemplateOutlet]="mMenuItemText" [ngTemplateOutletContext]="{ item: item, parentItem: parentItem }"></ng-container>
+		</a>
+
+		<!-- if menu item has submenu child then recursively call new menu item component -->
+		<div *ngIf="item.submenu" class="m-menu__submenu">
+			<span class="m-menu__arrow"></span>
+			<ul class="m-menu__subnav">
+				<ng-container *ngFor="let child of item.submenu">
+					<ng-container [ngTemplateOutlet]="mMenuItem" [ngTemplateOutletContext]="{ item: child, parentItem: item }"></ng-container>
+				</ng-container>
+			</ul>
+		</div>
+	</li>
+</ng-template>
+
+<ng-template #mMenuItemText let-item="item" let-parentItem="parentItem">
+	<!-- if menu item has icon -->
+	<i *ngIf="item.icon" class="m-menu__link-icon" [ngClass]="item.icon"></i>
+
+	<!-- if menu item using bullet -->
+	<i *ngIf="parentItem && parentItem.bullet === 'dot'" class="m-menu__link-bullet m-menu__link-bullet--dot">
+		<span></span>
+	</i>
+	<i *ngIf="parentItem && parentItem.bullet === 'line'" class="m-menu__link-bullet m-menu__link-bullet--line">
+		<span></span>
+	</i>
+
+	<ng-container *ngIf="!item.badge; else mMenuLinkBadge">
+		<!-- menu item title text -->
+		<span class="m-menu__link-text" [translate]="item.translate">
+			{{item.title}}
+		</span>
+	</ng-container>
+
+	<ng-template #mMenuLinkBadge>
+		<!-- menu item with badge -->
+		<span class="m-menu__link-title">
+			<span class="m-menu__link-wrap">
+				<span class="m-menu__link-text" [translate]="item.translate">{{item.title}}</span>
+				<span class="m-menu__link-badge">
+					<span class="m-badge" [ngClass]="item.badge.type">{{item.badge.value}}</span>
+				</span>
+			</span>
+		</span>
+	</ng-template>
+
+	<!-- if menu item has submenu child then put arrow icon -->
+	<i *ngIf="item.submenu" class="m-menu__ver-arrow la la-angle-right"></i>
+</ng-template>
+<!-- END: Left Aside -->

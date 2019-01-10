@@ -1,0 +1,12 @@
+<!-- <div class="m-list-timeline__item"> -->
+<span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
+<a href="" class="m-list-timeline__text">
+	{{item.text}}
+	<span *ngIf="item.tags?.length > 0" class="m-badge m-badge--wide" [ngClass]="badgeClass()">
+		{{item.tags}}
+	</span>
+</a>
+<span *ngIf="item.datetime" class="m-list-timeline__time">
+	{{item.datetime | mTimeElapsed}}
+</span>
+<!-- </div> -->

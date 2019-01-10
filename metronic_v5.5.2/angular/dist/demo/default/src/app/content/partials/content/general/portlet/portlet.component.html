@@ -1,0 +1,21 @@
+<!--begin::Portlet-->
+<div mPortlet #mPortlet [options]="options" class="m-portlet m-portlet--rounded-force">
+	<div class="m-portlet__head m-portlet__head--fit" #mPortletHead>
+		<div class="m-portlet__head-progress">
+			<mat-progress-bar mode="indeterminate" *ngIf="(loader.progress$ | async) === 0 && (loading$ | async)"></mat-progress-bar>
+		</div>
+		<div class="m-portlet__head-caption">
+			<ng-content select="[mPortletHeadTitle]"></ng-content>
+		</div>
+		<div class="m-portlet__head-tools" #mPortletHeadTools>
+			<ng-content select="[mPortletHeadTools]"></ng-content>
+		</div>
+	</div>
+	<div class="m-portlet__body" #mPortletBody>
+		<ng-content select="[mPortletBody]"></ng-content>
+	</div>
+	<div class="m-portlet__foot" #mPortletFooter>
+		<ng-content select="[mPortletFooter]"></ng-content>
+	</div>
+</div>
+<!--end::Portlet-->

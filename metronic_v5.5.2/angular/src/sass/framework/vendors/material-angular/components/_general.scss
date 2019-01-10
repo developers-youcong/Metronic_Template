@@ -1,0 +1,57 @@
+//== Form controls
+.mat-column-select {
+    overflow: initial;
+}
+.mat-column-checkbox {
+    flex: 0 0 70px;
+}
+
+.mat-column-vinCode {
+    flex: 1 0 60px;
+}
+
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+  
+.example-radio-button {
+    margin: 5px;
+}
+
+//== Tabs
+.demo-tab-group {
+    border: 1px solid #e8e8e8;
+  }
+  
+.demo-tab-content {
+    padding: 16px;
+}
+
+//== Panels
+.example-panel-Suspended {
+    .mat-select-content {
+        background: rgba(255, 0, 0, 0.5);
+    }
+}
+  
+.example-panel-Active {
+    .mat-select-content {
+        background:  rgba(0, 255, 0, 0.5);
+    }
+}
+
+.material-icons {
+    font-size: 18px !important;
+}
+
+//== Form fields
+.mat-form-field-fluid {
+    display: block !important;
+}
+
+//== Tabs
+.mat-tab-body-content {
+    overflow: visible !important;
+    padding-top: 20px !important;
+}

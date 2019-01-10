@@ -1,0 +1,18 @@
+:host {
+	.m-loading-bar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+	}
+	::ng-deep {
+		.mat-progress-bar-background {
+			opacity: 0;
+		}
+		.mat-progress-bar-buffer {
+			opacity: 0.3;
+		}
+	}
+}
+

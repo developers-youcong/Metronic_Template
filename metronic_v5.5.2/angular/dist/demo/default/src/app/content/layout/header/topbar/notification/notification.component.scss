@@ -1,0 +1,8 @@
+:host {
+	/deep/.mat-tab-label,
+	/deep/.mat-tab-label-active {
+		min-width: 0 !important;
+		padding: 0 10px !important;
+		margin: 0 10px !important;
+	}
+}

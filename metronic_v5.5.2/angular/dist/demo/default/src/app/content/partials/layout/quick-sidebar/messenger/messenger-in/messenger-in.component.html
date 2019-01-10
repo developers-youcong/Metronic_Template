@@ -1,0 +1,19 @@
+<div class="m-messenger__message m-messenger__message--in">
+	<div *ngIf="message.pic" class="m-messenger__message-pic">
+		<img src="{{message.pic}}" alt="" />
+	</div>
+	<div *ngIf="!message.pic" class="m-messenger__message-no-pic m--bg-fill-danger">
+		<span>{{message.username | mFirstLetter}}</span>
+	</div>
+	<div class="m-messenger__message-body">
+		<div class="m-messenger__message-arrow"></div>
+		<div class="m-messenger__message-content">
+			<div class="m-messenger__message-username">
+				{{message.username}}
+			</div>
+			<div class="m-messenger__message-text">
+				{{message.text}}
+			</div>
+		</div>
+	</div>
+</div>

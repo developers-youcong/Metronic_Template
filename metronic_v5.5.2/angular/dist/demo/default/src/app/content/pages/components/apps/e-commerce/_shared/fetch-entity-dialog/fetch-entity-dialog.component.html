@@ -1,0 +1,34 @@
+<div class="m-portlet">
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<span class="m-portlet__head-icon m--hide">
+					<i class="la la-gear"></i>
+				</span>
+				<h3 class="m-portlet__head-text">
+					Fetch selected elements
+				</h3>
+			</div>
+		</div>
+	</div>
+	<div class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+		<div class="m-portlet__body">
+			<div class="m-list-timeline m-list-timeline--skin-light m--padding-30">
+				<div class="m-list-timeline__items">
+					<div class="m-list-timeline__item" *ngFor="let message of data">
+						<span class="m-list-timeline__badge m-list-timeline__badge--{{ getItemCssClassByStatus(message.status)}}"></span>
+						<span class="m-list-timeline__text">{{message.text}}
+							<span class="m-badge m-badge--{{ getItemCssClassByStatus(message.status)}} m-badge--wide">ID: {{message.id}}</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit text-right">
+			<div class="m-form__actions m-form__actions--solid">
+				<button mat-button mat-raised-button (click)="onNoClick()">Cancel</button>&nbsp;
+				<button mat-button mat-raised-button color="primary" [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>&nbsp;
+			</div>
+		</div>
+	</div>
+</div>

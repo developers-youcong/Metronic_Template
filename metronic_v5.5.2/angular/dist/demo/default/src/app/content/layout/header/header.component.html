@@ -1,0 +1,25 @@
+<!-- BEGIN: Header -->
+<header mHeader class="m-grid__item m-header" [attr.m-minimize-offset]="'200'" [attr.m-minimize-mobile-offset]="'200'">
+	<div [ngClass]="headerService.containerClass$ | async">
+		<div class="m-stack m-stack--ver m-stack--desktop">
+			<m-brand></m-brand>
+			<mat-progress-bar class="m-loading-bar" *ngIf="(loader.progress$|async) > 0" [value]="loader.progress$|async"></mat-progress-bar>
+
+			<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
+
+				<!-- BEGIN: Horizontal Menu -->
+				<ng-container *ngIf="headerService.menuHeaderDisplay$ | async">
+					<!-- show/hide horizontal menu based on menu.header.display option -->
+					<button class="m-aside-header-menu-mobile-close" id="m_aside_header_menu_mobile_close_btn" [ngClass]="headerService.headerMenuCloseClass$ | async">
+						<i class="la la-close"></i>
+					</button>
+					<m-menu-horizontal></m-menu-horizontal>
+				</ng-container>
+				<!-- END: Horizontal Menu -->
+
+				<m-topbar></m-topbar>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- END: Header -->

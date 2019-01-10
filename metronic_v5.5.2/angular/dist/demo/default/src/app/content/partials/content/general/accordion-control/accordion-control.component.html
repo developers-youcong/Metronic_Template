@@ -1,0 +1,52 @@
+<ng-template ngFor let-panel [ngForOf]="panels">
+	<div [class]="'m-accordion__item m-accordion__item--' + (panel.type)">
+		<!-- title -->
+		<div role="tab" id="{{panel.id}}-header" 
+			[class]="'m-accordion__item-head ' + (panel.type ? 'bg-'+panel.type: type ? 'bg-'+type : '')" 
+			[class.collapsed]="!panel.isOpen" 
+			data-toggle="collapse" 
+			(click)="!!toggle(panel.id)" 
+			[class.text-muted]="panel.disabled" 
+			[attr.tabindex]="(panel.disabled ? '-1' : null)" 
+			[attr.aria-expanded]="panel.isOpen" 
+			[attr.aria-controls]="(panel.isOpen ? panel.id : null)" 
+			[attr.aria-disabled]="panel.disabled">
+			<span class="m-accordion__item-icon" *ngIf="panel.iconClass">
+				<i [class]="panel.iconClass"></i>
+			</span>
+			<span class="m-accordion__item-title">
+				{{panel.title}}
+				<ng-template [ngTemplateOutlet]="panel.titleTpl?.templateRef"></ng-template>
+			</span>
+			<span class="m-accordion__item-mode"></span>
+		</div>
+		<!-- end: title -->
+
+		<!-- body without animation -->
+		<div *ngIf="!hasAnimation && (!destroyOnHide || panel.isOpen)" 
+			id="{{panel.id}}" 
+			role="tabpanel"
+			[attr.aria-labelledby]="panel.id + '-header'" 
+			class="m-accordion__item-body collapse {{panel.isOpen ? 'show' : null}}">
+			<div class="m-accordion__item-content">
+				<ng-template [ngTemplateOutlet]="panel.contentTpl?.templateRef"></ng-template>
+			</div>
+		</div>
+		<!-- end: body without animation -->
+
+		<!-- body with animation -->
+		<div *ngIf="hasAnimation" 
+			id="{{panel.id}}" 
+			role="tabpanel"
+			[attr.aria-labelledby]="panel.id + '-header'" 
+			class="m-accordion__item-body m-accordion--animation"
+			[style.height]="panel.height + 'px'">
+			<div class="m-accordion__item-content">
+				<ng-template [ngTemplateOutlet]="panel.contentTpl?.templateRef"></ng-template>
+			</div>
+		</div>
+		<!-- end: body with animation -->
+		
+
+	</div>
+</ng-template>

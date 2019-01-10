@@ -1,0 +1,37 @@
+<!-- begin:: Page -->
+<ng-container *ngIf="selfLayout !== 'blank' ; else selfLayoutBlank">
+	<m-header></m-header>
+
+	<!-- begin::Body -->
+	<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body" [ngClass]="pageBodyClass$ | async">
+		<!-- BEGIN:: Aside Left -->
+		<button class="m-aside-left-close" id="m_aside_left_close_btn" [ngClass]="asideLeftCloseClass | mJoin">
+			<i class="la la-close"></i>
+		</button>
+		<ng-container *ngIf="asideLeftDisplay">
+			<m-aside-left></m-aside-left>
+		</ng-container>
+		<!-- END:: Aside Left -->
+
+		<div #mContentWrapper class="m-grid__item m-grid__item--fluid m-wrapper">
+			<m-subheader></m-subheader>
+			<div class="m-content" #mContent>
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+		<ng-container *ngIf="asideRightDisplay">
+			<m-aside-right></m-aside-right>
+		</ng-container>
+	</div>
+	<!-- end:: Body -->
+
+	<m-footer></m-footer>
+	<m-quick-sidebar></m-quick-sidebar>
+	<m-tooltips></m-tooltips>
+	<m-scroll-top></m-scroll-top>
+</ng-container>
+
+<ng-template #selfLayoutBlank>
+	<router-outlet></router-outlet>
+</ng-template>
+<!-- end:: Page -->

@@ -1,0 +1,50 @@
+<div class="m-portlet" [ngClass]="{ 'm-portlet--body-progress' : viewLoading, 'm-portlet--body-progress-overlay' : loadingAfterSubmit }">
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<span class="m-portlet__head-icon m--hide">
+					<i class="la la-gear"></i>
+				</span>
+				<h3 class="m-portlet__head-text">
+					{{ data.title }}
+				</h3>
+			</div>
+		</div>
+	</div>
+	<div class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+		<div class="m-portlet__body">
+			<div class="m-portlet__body-progress">
+				<mat-spinner [diameter]="20"></mat-spinner>
+			</div>
+			<div class="m-list-timeline m-list-timeline--skin-light m--padding-30">
+				<div class="m-list-timeline__items">
+					<div class="m-list-timeline__item" *ngFor="let message of data.messages">
+						<span class="m-list-timeline__badge m-list-timeline__badge--{{ message.statusCssClass }}"></span>
+						<span class="m-list-timeline__text">{{message.text}}
+							<span class="m-badge m-badge--{{message.statusCssClass}} m-badge--wide">{{ message.statusTitle }}</span>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit text-right">
+			<div class="m-form__actions m-form__actions--solid">
+				<div class="row">
+					<div class="col-lg-12">
+						<mat-form-field>
+							<mat-select placeholder="Status" [formControl]="selectedStatusForUpdate">
+								<mat-option *ngFor="let status of data.statuses" value="{{ status.value }}">{{status.text}}</mat-option>
+							</mat-select>
+							<mat-hint align="start">Select
+								<strong>Status</strong> for rows updating</mat-hint>
+						</mat-form-field>
+						&nbsp;
+						<button type="button" mat-raised-button color="primary" (click)="updateStatus()" [disabled]="selectedStatusForUpdate.value.length == 0">Update status</button>&nbsp;
+						<button type="button" mat-raised-button (click)="onNoClick()">Cancel</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

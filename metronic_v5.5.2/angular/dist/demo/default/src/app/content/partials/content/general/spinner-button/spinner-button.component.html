@@ -1,0 +1,4 @@
+<button mat-raised-button [color]="options.buttonColor" [class.active]="options.active" [class.fullWidth]="options.fullWidth" [class.mat-raised-button]="options.raised" [disabled]="options.active">
+	<span><ng-content></ng-content></span>
+	<mat-spinner class="spinner" [diameter]="options.spinnerSize" [color]="options.spinnerColor" [mode]="options.mode" [value]="options.value" *ngIf="options.active"></mat-spinner>
+</button>

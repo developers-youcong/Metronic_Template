@@ -1,0 +1,35 @@
+<!-- BEGIN: Brand -->
+<div class="m-stack m-stack--ver m-stack--general">
+	<div class="m-stack__item m-stack__item--middle m-brand__logo">
+		<a routerLink="/" class="m-brand__logo-wrapper">
+			<img alt="" [attr.src]="headerLogo" />
+		</a>
+	</div>
+	<div class="m-stack__item m-stack__item--middle m-brand__tools">
+		<!-- BEGIN: Left Aside Minimize Toggle -->
+		<a *ngIf="menuAsideMinimizToggle" href="javascript:;" [ngClass]="{ 'm-brand__toggler--active': menuAsideMinimizeDefault }" mMenuAsideToggle id="m_aside_left_minimize_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-desktop-inline-block">
+			<span></span>
+		</a>
+		<!-- END -->
+
+		<!-- BEGIN: Responsive Aside Left Menu Toggler -->
+		<a *ngIf="menuAsideDisplay" href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
+			<span></span>
+		</a>
+		<!-- END -->
+
+		<!-- BEGIN: Responsive Header Menu Toggler -->
+		<!-- [BUG] issue with *ngIf="menuHeaderDisplay", mOffcanvas trigger first before this DOM exist -->
+		<a *ngIf="menuHeaderDisplay" id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
+			<span></span>
+		</a>
+		<!-- END -->
+
+		<!-- BEGIN: Topbar Toggler -->
+		<a id="m_aside_header_topbar_mobile_toggle" (click)="clickTopbarToggle($event)" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
+			<i class="flaticon-more"></i>
+		</a>
+		<!-- BEGIN: Topbar Toggler -->
+	</div>
+</div>
+<!-- END: Brand -->

@@ -1,0 +1,79 @@
+<!--begin:: Widgets/Audit Log-->
+<m-portlet>
+	<!-- use ng-container[mPortletHeadTitle] for the title -->
+	<ng-container mPortletHeadTitle>
+		<div class="m-portlet__head-title">
+			<h3 class="m-portlet__head-text">
+				Audit Log
+			</h3>
+		</div>
+	</ng-container>
+
+	<!-- use ng-container[mPortletHeadTools] for the top right toolbar content -->
+	<ng-container mPortletHeadTools>
+		<ul class="m-portlet__nav">
+			<li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
+				<a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">
+					All
+				</a>
+				<div class="m-dropdown__wrapper">
+					<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+					<div class="m-dropdown__inner">
+						<div class="m-dropdown__body">
+							<div class="m-dropdown__content">
+								<ul class="m-nav">
+									<li class="m-nav__section m-nav__section--first">
+										<span class="m-nav__section-text">Quick Actions</span>
+									</li>
+									<li class="m-nav__item">
+										<a href="" class="m-nav__link">
+											<i class="m-nav__link-icon flaticon-share"></i>
+											<span class="m-nav__link-text">Activity</span>
+										</a>
+									</li>
+									<li class="m-nav__item">
+										<a href="" class="m-nav__link">
+											<i class="m-nav__link-icon flaticon-chat-1"></i>
+											<span class="m-nav__link-text">Messages</span>
+										</a>
+									</li>
+									<li class="m-nav__item">
+										<a href="" class="m-nav__link">
+											<i class="m-nav__link-icon flaticon-info"></i>
+											<span class="m-nav__link-text">FAQ</span>
+										</a>
+									</li>
+									<li class="m-nav__item">
+										<a href="" class="m-nav__link">
+											<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+											<span class="m-nav__link-text">Support</span>
+										</a>
+									</li>
+									<li class="m-nav__separator m-nav__separator--fit">
+									</li>
+									<li class="m-nav__item">
+										<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Cancel</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</ng-container>
+
+	<!-- use ng-container[mPortletBody] for the body content -->
+	<ng-container mPortletBody>
+		<perfect-scrollbar class="m-scrollable" data-scrollable="true" data-height="400" style="height: 400px; overflow: hidden;">
+			<div class="m-list-timeline m-list-timeline--skin-light">
+				<div class="m-list-timeline__items">
+					<ng-container *ngFor="let item of logList|async">
+						<m-timeline-item [item]="item"></m-timeline-item>
+					</ng-container>
+				</div>
+			</div>
+		</perfect-scrollbar>
+	</ng-container>
+</m-portlet>
+<!--end:: Widgets/Audit Log-->

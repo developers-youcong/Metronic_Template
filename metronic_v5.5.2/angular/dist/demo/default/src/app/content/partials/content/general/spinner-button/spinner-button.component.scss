@@ -1,0 +1,17 @@
+:host {
+	button /deep/ .mat-button-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	button.active {
+		cursor: not-allowed
+	}
+	.spinner {
+		margin-top: 0px;
+		margin-left: 5px;
+	}
+	.fullWidth {
+		width: 100%;
+	}
+}

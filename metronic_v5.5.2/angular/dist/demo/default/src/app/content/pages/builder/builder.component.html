@@ -1,0 +1,331 @@
+<m-notice [icon]="'flaticon-cogwheel-2 m--font-brand'">
+	<p>
+		The layout builder helps to configure the layout with preferred options and preview it in real time. The configured layout options will be saved until you change or reset them. To use the layout builder choose the layout options and click the
+		<code>Preview</code> button to preview the changes and click the
+		<code>Export</code> to export your changes with following options:
+	</p>
+</m-notice>
+
+<!--begin::Portlet-->
+<div class="m-portlet m-portlet--tabs">
+	<!--begin::Form-->
+	<form class="m-form m-form--label-align-right m-form--fit" novalidate #builderForm="ngForm" (ngSubmit)="submitPreview(builderForm)">
+		<div class="m-portlet__body">
+
+			<mat-tab-group>
+				<mat-tab label="Page">
+					<div class="m-portlet__body">
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Layout Type:</label>
+							<div class="col-lg-8 col-xl-4">
+								<select class="form-control" name="builder[self][layout]" [(ngModel)]="model.self.layout">
+									<option value="fluid">Fluid</option>
+									<option value="boxed">Boxed</option>
+								</select>
+								<span class="m-form__help">Select page layout type</span>
+							</div>
+						</div>
+						<!--<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Page Loader:</label>
+							<div class="col-lg-8 col-xl-4">
+								<select class="form-control" name="builder[loader][type]" [(ngModel)]="model.loader.type">
+									<option value="">Disabled</option>
+									<option value="default">Default</option>
+									<option value="spinner-message">Spinner Message</option>
+								</select>
+								<div class="m-form__help">Select page loading indicator</div>
+							</div>
+						</div>-->
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Content Skin:</label>
+							<div class="col-lg-8 col-xl-4">
+								<select class="form-control" name="builder[content][skin]" [(ngModel)]="model.content.skin">
+									<option value="light">White</option>
+									<option value="light2">Light Grey</option>
+								</select>
+								<span class="m-form__help">Please select content skin</span>
+							</div>
+						</div>
+					</div>
+				</mat-tab>
+				<mat-tab label="Header">
+					<div class="m-portlet__body">
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Desktop Fixed Header:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[header][self][fixed][desktop]" value="true" [(ngModel)]="model.header.self.fixed.desktop" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Enable fixed header for desktop mode</div>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Mobile Fixed Header:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[header][self][fixed][mobile]" value="true" [(ngModel)]="model.header.self.fixed.mobile" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Enable fixed header for mobile mode</div>
+							</div>
+						</div>
+
+						<div class="m-separator m-separator--dashed"></div>
+
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Display Header Menu:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[menu][header][display]" value="true" [(ngModel)]="model.menu.header.display" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Display header menu</div>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Dropdown Skin(Desktop):</label>
+							<div class="col-lg-8 col-xl-4">
+								<select class="form-control" name="builder[menu][header][desktop][submenu][skin]" [(ngModel)]="model.menu.header.desktop.submenu.skin">
+									<option value="light">Light</option>
+									<option value="dark">Dark</option>
+								</select>
+								<span class="m-form__help">Please select header menu dropdown skin</span>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Display Submenu Arrow(Desktop):</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[menu][header][desktop][submenu][arrow]" value="true" [(ngModel)]="model.menu.header.desktop.submenu.arrow" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Display header menu dropdown arrows on desktop mode</div>
+							</div>
+						</div>
+
+						<div class="m-separator m-separator--dashed"></div>
+
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Search Type:</label>
+							<div class="col-lg-8 col-xl-4">
+								<select class="form-control" name="builder[header][search][type]" [(ngModel)]="model.header.search.type">
+									<option value="search-default">Expandable Search</option>
+									<option value="search-dropdown">Dropdown Search</option>
+								</select>
+								<span class="m-form__help">Please header search type</span>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Dropdown Skin:</label>
+							<div class="col-lg-8 col-xl-4">
+								<select class="form-control" name="builder[header][search][dropdown][skin]" [(ngModel)]="model.header.search.dropdown.skin">
+									<option value="light">Light</option>
+									<option value="dark">Dark</option>
+								</select>
+								<span class="m-form__help">Please select search results dropdown skin for dropdown search type</span>
+							</div>
+						</div>
+					</div>
+				</mat-tab>
+				<mat-tab label="Left Aside">
+					<div class="m-portlet__body">
+						<div class="form-group m-form__group row m--hide">
+							<label class="col-lg-4 col-form-label">Display Aside:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[aside][left][display]" value="true" [(ngModel)]="model.aside.left.display" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Display left aside</div>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Aside Skin:</label>
+							<div class="col-lg-8 col-xl-4">
+								<select class="form-control" name="builder[aside][left][skin]" [(ngModel)]="model.aside.left.skin">
+									<option value="dark">Dark</option>
+									<option value="light">Light</option>
+								</select>
+								<div class="m-form__help">Set left aside skin</div>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Fixed Aside:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[aside][left][fixed]" value="true" [(ngModel)]="model.aside.left.fixed" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Set fixed aside layout</div>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Allow Aside Minimizing:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[aside][left][minimize][toggle]" value="true" [(ngModel)]="model.aside.left.minimize.toggle" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Allow aside minimizing</div>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Default Minimized Aside:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[aside][left][minimize][default]" value="true" [(ngModel)]="model.aside.left.minimize.default" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Set aside minimized by default</div>
+							</div>
+						</div>
+
+						<div class="m-separator m-separator--dashed"></div>
+
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Submenu Toggle:</label>
+							<div class="col-lg-8 col-xl-4">
+								<select class="form-control" name="builder[menu][aside][desktop_and_mobile][submenu][accordion]" [(ngModel)]="model.menu.aside.desktop_and_mobile.submenu.accordion">
+									<option [ngValue]="false">Dropdown</option>
+									<option [ngValue]="true">Accordion</option>
+								</select>
+								<div class="m-form__help">Select submenu toggle mode</div>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Dropdown Submenu Skin:</label>
+							<div class="col-lg-8 col-xl-4">
+								<select class="form-control" name="builder[menu][aside][submenu][skin]" [(ngModel)]="model.menu.aside.desktop_and_mobile.submenu.skin">
+									<option value="inherit">Inherit</option>
+									<option value="dark">Dark</option>
+									<option value="light">Light</option>
+								</select>
+								<div class="m-form__help">Select submenu skin. If
+									<code>Inherit</code> is selected it will use the left aside's skin.</div>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Dropdown Submenu Arrow:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[menu][aside][submenu][dropdown][arrow]" value="true" [(ngModel)]="model.menu.aside.desktop_and_mobile.submenu.dropdown.arrow" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Enable dropdown submenu arrow</div>
+							</div>
+						</div>
+					</div>
+				</mat-tab>
+				<mat-tab label="Right Aside">
+					<div class="m-portlet__body">
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Display Right Aside:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[aside][right][display]" value="true" [(ngModel)]="model.aside.right.display" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Display right aside</div>
+							</div>
+						</div>
+					</div>
+				</mat-tab>
+				<mat-tab label="Footer">
+					<div class="m-portlet__body">
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Fixed Footer:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[footer][fixed]" value="true" [(ngModel)]="model.footer.fixed" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Set fixed header</div>
+							</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-4 col-form-label">Push Footer:</label>
+							<div class="col-lg-8 col-xl-4">
+								<span class="m-switch m-switch--icon-check">
+									<label>
+										<input type="checkbox" name="builder[aside][left][push_footer]" value="true" [(ngModel)]="model.aside.left.push_footer" />
+										<span></span>
+									</label>
+								</span>
+								<div class="m-form__help">Push footer to the right</div>
+							</div>
+						</div>
+					</div>
+				</mat-tab>
+			</mat-tab-group>
+
+		</div>
+
+		<div class="m-portlet__foot m-portlet__foot--fit">
+			<div class="m-form__actions">
+				<div class="row">
+					<div class="col-lg-4"></div>
+					<div class="col-lg-8 ">
+						<button type="submit" name="builder_submit" data-demo="" class="btn btn-primary m-btn m-btn--icon m-btn--wide m-btn--air m-btn--custom">
+							<span>
+								<i class="la la-eye"></i>
+								<span>Preview</span>
+							</span>
+						</button>
+						&nbsp;
+						<button type="submit" name="builder_submit" data-demo="" class="btn btn-accent m-btn m-btn--icon m-btn--wide m-btn--air m-btn--custom">
+							<span>
+								<i class="la la-cog"></i>
+								<span>Export</span>
+							</span>
+						</button>
+						&nbsp;
+						<button type="submit" (click)="resetPreview($event)" name="builder_reset" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--air m-btn--custom">
+							<span>
+								<i class="la la-recycle"></i>
+								<span>Reset</span>
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<m-portlet>
+	<ng-container mPortletHeadTitle>
+		<div class="m-portlet__head-title">
+			<h3 class="m-portlet__head-text">
+				Generated Config <small>can be used for layout config in <code>/src/app/config/layout.ts</code></small>
+			</h3>
+		</div>
+	</ng-container>
+	<ng-container mPortletBody>
+		<div perfectScrollbar style="max-height: 400px">
+			<pre><code highlight class="json">{{model|json}}</code></pre>
+		</div>
+	</ng-container>
+</m-portlet>

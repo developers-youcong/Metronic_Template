@@ -1,0 +1,24 @@
+<div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
+	<div class="m-messenger__messages">
+		<perfect-scrollbar style="height: 78vh;">
+			<ng-container *ngFor="let message of messages|async">
+				<m-messenger-in *ngIf="message.type === 'in'" [message]="message"></m-messenger-in>
+				<m-messenger-out *ngIf="message.type === 'out'" [message]="message"></m-messenger-out>
+				<div *ngIf="message.type === 'datetime'" class="m-messenger__datetime">
+					{{message.text}}
+				</div>
+			</ng-container>
+		</perfect-scrollbar>
+		<div class="m-messenger__seperator"></div>
+		<div class="m-messenger__form">
+			<div class="m-messenger__form-controls">
+				<input type="text" name="" placeholder="Type here..." class="m-messenger__form-input">
+			</div>
+			<div class="m-messenger__form-tools">
+				<a href="" class="m-messenger__form-attachment">
+					<i class="la la-paperclip"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

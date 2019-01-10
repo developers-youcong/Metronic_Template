@@ -1,0 +1,12 @@
+<div class="m-list-timeline">
+	<div *ngIf="(logList|async)?.length > 0" class="m-list-timeline__group">
+		<div *ngIf="heading" class="m-list-timeline__heading">
+			{{heading}}
+		</div>
+		<div class="m-list-timeline__items">
+			<ng-container *ngFor="let item of logList|async">
+				<m-timeline-item [item]="item"></m-timeline-item>
+			</ng-container>
+		</div>
+	</div>
+</div>

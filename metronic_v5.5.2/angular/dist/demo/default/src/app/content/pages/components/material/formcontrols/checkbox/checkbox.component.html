@@ -1,0 +1,87 @@
+<m-notice [icon]="'flaticon-exclamation m--font-primary'">
+	For more info please check the components's official demos & documentation 
+	<a class="m-link" href="https://material.angular.io/components/checkbox/overview" target="_blank">demos & documentation</a>
+</m-notice>
+
+<div class="row">
+	<div class="col-xl-6">
+		<m-material-preview [viewItem]="exampleBasicCheckboxes">
+			<div class="m-section">
+				<span class="m-section__sub">
+					<code>&lt;mat-checkbox&gt;</code> provides the same functionality as a native
+					<code>&lt;input type="checkbox"&gt;</code> enhanced with Material Design styling and animations.
+				</span>
+				<div class="m-separator m-separator--dashed"></div>
+				<div class="m-section__content">
+					<mat-checkbox>Check me!</mat-checkbox>
+				</div>
+			</div>
+		</m-material-preview>
+
+		<m-material-preview [viewItem]="exampleLabelPositions">
+			<div class="m-section">
+				<span class="m-section__sub">
+					<code>@Input() labelPosition: 'before' | 'after'</code> Whether the label should appear after or before the checkbox. Defaults to 'after'
+				</span>
+				<div class="m-separator m-separator--dashed"></div>
+				<div class="m-section__content">
+					<mat-checkbox [labelPosition]="labelPosition">Check me!</mat-checkbox>
+					<div class="m-separator m-separator--dashed"></div>
+					<mat-slide-toggle (change)="changeLablesPositions()">Slide labels position</mat-slide-toggle>
+				</div>
+			</div>
+		</m-material-preview>
+
+		<m-material-preview [viewItem]="exampleChangeEvent">
+			<div class="m-section">
+				<span class="m-section__sub">
+					<code>@Output() change: EventEmitter&lt;MatCheckboxChange&gt;</code> Event emitted when the checkbox's checked value changes.
+				</span>
+				<div class="m-separator m-separator--dashed"></div>
+				<div class="m-section__content">
+					<mat-checkbox [(ngModel)]="myValue" (change)="changeValueEvent()">Check me!</mat-checkbox>
+					<div class="m-separator m-separator--dashed"></div>
+					<span>Checked: <mark>{{ myValue }}</mark></span>
+				</div>
+			</div>
+		</m-material-preview>
+
+		
+	</div>
+	<div class="col-xl-6">
+
+		<m-material-preview [viewItem]="exampleConfigurableCheckbox">
+			<div class="m-section">
+				<span class="m-section__sub">
+					When user clicks on the
+					<code>mat-checkbox</code>, the default behavior is toggle checked value and set indeterminate to false. This behavior can be customized by
+					<a href="https://angular.io/guide/dependency-injection" target="_blank">providing a new value</a> of
+					<code>MAT_CHECKBOX_CLICK_ACTION</code> to the checkbox.
+				</span>
+				<div class="m-separator m-separator--dashed"></div>
+				<div class="m-section__content">
+					<mat-checkbox class="example-margin" [(ngModel)]="checked">Checked</mat-checkbox>
+					<mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Indeterminate</mat-checkbox>
+					<div class="m-separator m-separator--dashed"></div>
+					<label class="example-margin">Align:</label>
+					<mat-radio-group [(ngModel)]="align">
+						<mat-radio-button class="example-margin" value="start">Start</mat-radio-button>
+						<mat-radio-button class="example-margin" value="end">End</mat-radio-button>
+					</mat-radio-group>
+
+					<div class="m-separator m-separator--dashed"></div>
+					<mat-checkbox class="example-margin" [(ngModel)]="disabled">Disabled</mat-checkbox>
+
+					<div class="m-separator m-separator--dashed"></div>
+
+					
+					Result: 
+					<mat-checkbox class="example-margin" [(ngModel)]="checked" [(indeterminate)]="indeterminate" [disabled]="disabled">
+						I'm a checkbox
+					</mat-checkbox>
+
+				</div>
+			</div>
+		</m-material-preview>
+	</div>
+</div>

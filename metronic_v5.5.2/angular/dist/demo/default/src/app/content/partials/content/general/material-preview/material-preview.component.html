@@ -1,0 +1,75 @@
+<div class="row">
+	<div class="col-xl-12">
+		<div class="m-portlet m-portlet--ngviewer" *ngIf="viewItem">
+			<div class="m-portlet__head">
+				<div class="m-portlet__head-caption" *ngIf="viewItem.beforeCodeTitle">
+					<div class="m-portlet__head-title">
+						<h3 class="m-portlet__head-text">
+							{{ viewItem.beforeCodeTitle }}
+						</h3>
+					</div>
+				</div>
+				<div class="m-portlet__head-tools" *ngIf="hasExampleSource()">
+					<ul class="m-portlet__nav">
+						<li class="m-portlet__nav-item">
+							<a href="javascript:;" *ngIf="hasExampleSource()" (click)="changeCodeVisibility()" class="m-portlet__nav-link m-portlet__nav-link--icon" title="View Source">
+								<i class="la la-code"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="m-portlet__body m-portlet__body--no-padding">
+				<div class="m-portlet__preview" *ngIf="viewItem.beforeCodeDescription">
+					<div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30" [ngClass]="classes" role="alert">
+						<div class="m-alert__text" [innerHTML]="viewItem.beforeCodeDescription | safe: 'html'"></div>
+					</div>
+				</div>
+				<div *ngIf="hasExampleSource()"
+					class="m-portlet__preview m-portlet__code"
+					[ngClass]="{'m-portlet__code--show' : viewItem.isCodeVisible}">
+					<mat-tab-group *ngIf="viewItem.isCodeVisible">
+						<mat-tab label="HTML" *ngIf="viewItem.htmlCode">
+							<a href="javascript:;" class="m-portlet__code-copy" title="Copy example source" [clipboard]="viewItem.htmlCode">
+								<i class="la la-copy"></i>
+							</a>
+							<pre><code highlight [textContent]="viewItem.htmlCode"></code></pre>
+						</mat-tab>
+						<mat-tab label="TS" *ngIf="viewItem.tsCode">
+							<a href="javascript:;" class="m-portlet__code-copy" title="Copy example source" [clipboard]="viewItem.tsCode">
+								<i class="la la-copy"></i>
+							</a>
+							<pre class="language-typescript"><code highlight class="language-typescript" [textContent]="viewItem.tsCode"></code></pre>
+						</mat-tab>
+						<mat-tab label="CSS" *ngIf="viewItem.cssCode">
+							<a href="javascript:;" class="m-portlet__code-copy" title="Copy example source" [clipboard]="viewItem.cssCode">
+								<i class="la la-copy"></i>
+							</a>
+							<pre class="language-css"><code highlight class="language-css" [textContent]="viewItem.cssCode"></code></pre>
+						</mat-tab>
+						<mat-tab label="SCSS" *ngIf="viewItem.scssCode">
+							<a href="javascript:;" class="m-portlet__code-copy" title="Copy example source" [clipboard]="viewItem.scssCode">
+								<i class="la la-copy"></i>
+							</a>
+							<pre class="language-scssCode"><code highlight class="language-scssCode" [textContent]="viewItem.scssCode"></code></pre>
+						</mat-tab>
+					</mat-tab-group>
+				</div>
+
+		<!-- view -->
+		<div class="m-portlet__preview">
+			<ng-content></ng-content>
+		</div>
+		<!-- / view -->
+
+		<!-- after Code Title -->
+		<div *ngIf="viewItem.afterCodeTitle" class="m-portlet__preview" [innerHTML]="viewItem.afterCodeTitle | safe: 'html'">
+		</div>
+		<!-- / after Code Title -->
+
+		<!-- after Code Description -->
+		<div *ngIf="viewItem.afterCodeDescription" class="m-portlet__preview" [innerHTML]="viewItem.afterCodeDescription | safe: 'html'">
+		</div>
+		<!-- / after Code Description -->
+	</div>
+</div>

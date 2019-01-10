@@ -1,0 +1,46 @@
+<div class="m-portlet" [ngClass]="{ 'm-portlet--body-progress' : viewLoading, 'm-portlet--body-progress-overlay' : loadingAfterSubmit }">
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<span class="m-portlet__head-icon m--hide">
+					<i class="la la-gear"></i>
+				</span>
+				<h3 class="m-portlet__head-text">
+					{{ data.isNew ? 'Create' : 'Update'}} specification
+				</h3>
+			</div>
+		</div>
+	</div>
+	<!--begin::Form-->
+	<form class="m-form">
+		<div class="m-portlet__body">
+
+			<div class="m-portlet__body-progress">
+				<mat-spinner [diameter]="20"></mat-spinner>
+			</div>
+
+
+			<div class="m-form__section m-form__section--first">
+				<div class="form-group m-form__group">
+					<mat-form-field class="mat-form-field-fluid">
+						<mat-select placeholder="Enter Specification type" [formControl]="selectedNameIdForUpdate">
+							<mat-option value="{{sp.id}}" *ngFor="let sp of specificationsTypes;">{{sp.name}}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<div class="form-group m-form__group">
+					<mat-form-field class="mat-form-field-fluid">
+						<input matInput placeholder="Enter Value" [formControl]="selectedValueForUpdate" required>
+					</mat-form-field>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__foot m-portlet__foot--fit text-right">
+			<div class="m-form__actions m-form__actions m-form__actions--solid">
+				<button type="button" mat-raised-button cdkFocusInitial (click)="onNoClick()" matTooltip="Cancel changes">Cancel</button>&nbsp;
+				<button type="button" mat-raised-button color="primary" (click)="save()" [disabled]="!checkDataIsValid() || viewLoading" matTooltip="Save changes">Save</button>
+			</div>
+		</div>
+	</form>
+	<!--end::Form-->
+</div>

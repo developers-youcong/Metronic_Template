@@ -1,0 +1,148 @@
+{
+    "config": {
+        "demo": "",
+        "debug": false,
+        "compile": {
+            "rtl": {
+                "enabled": true,
+                "skip": [
+                    "socicon",
+                    "line-awesome",
+                    "flaticon",
+                    "metronic",
+                    "fontawesome5"
+                ]
+            },
+            "jsUglify": false,
+            "cssMinify": false,
+            "jsSourcemaps": false,
+            "cssSourcemaps": false
+        },
+        "path": {
+            "src": "./../src",
+            "node_modules": "./node_modules",
+            "demo_api_url": "https://keenthemes.com/metronic/themes/themes/metronic/dist/preview/"
+        },
+        "dist": [
+            "./../dist/demo/**/src/assets"
+        ]
+    },
+    "build": {
+        "vendors": {
+            "base": {
+                "src": {
+                    "mandatory": {
+                        "perfect-scrollbar": {
+                            "styles": [
+                                "{$config.path.node_modules}/perfect-scrollbar/css/perfect-scrollbar.css"
+                            ],
+                            "scripts": [
+                                "{$config.path.node_modules}/perfect-scrollbar/dist/perfect-scrollbar.js"
+                            ]
+                        }
+                    },
+                    "optional": {
+                        "tether": {
+                            "styles": [
+                                "{$config.path.node_modules}/tether/dist/css/tether.css"
+                            ],
+                            "scripts": []
+                        },
+                        "socicon": {
+                            "styles": [
+                                "{$config.path.node_modules}/socicon/css/socicon.css"
+                            ],
+                            "fonts": [
+                                "{$config.path.node_modules}/socicon/font/**"
+                            ]
+                        },
+                        "line-awesome": {
+                            "styles": [
+                                "{$config.path.src}/vendors/line-awesome/css/line-awesome.css"
+                            ],
+                            "fonts": [
+                                "{$config.path.src}/vendors/line-awesome/fonts/**"
+                            ]
+                        },
+                        "flaticon": {
+                            "styles": [
+                                "{$config.path.src}/vendors/flaticon/css/flaticon.css"
+                            ],
+                            "fonts": [
+                                "{$config.path.src}/vendors/flaticon/fonts/**"
+                            ]
+                        },
+                        "metronic": {
+                            "styles": [
+                                "{$config.path.src}/vendors/metronic/css/styles.css"
+                            ],
+                            "fonts": [
+                                "{$config.path.src}/vendors/metronic/fonts/**"
+                            ]
+                        },
+                        "fontawesome5": {
+                            "styles": [
+                                "{$config.path.src}/vendors/fontawesome5/css/all.min.css"
+                            ],
+                            "fonts": [
+                                "{$config.path.src}/vendors/fontawesome5/webfonts/**"
+                            ]
+                        }
+                    }
+                },
+                "bundle": {
+                    "styles": "{$config.output}/vendors/base/vendors.bundle.css",
+                    "scripts": "{$config.output}/vendors/base/vendors.bundle.js",
+                    "images": "{$config.output}/vendors/base/images",
+                    "fonts": "{$config.output}/vendors/base/fonts"
+                }
+            }
+        },
+        "demo": {
+            "default": {
+                "base": {
+                    "src": {
+                        "styles": [
+                            "{$config.path.src}/sass/demo/default/style-angular.scss"
+                        ],
+                        "scripts": [
+                            "{$config.path.src}/js/framework/base/util.js",
+                            "{$config.path.src}/js/framework/components/general/header.js",
+                            "{$config.path.src}/js/framework/components/general/menu.js",
+                            "{$config.path.src}/js/framework/components/general/dropdown.js",
+                            "{$config.path.src}/js/framework/components/general/offcanvas.js",
+                            "{$config.path.src}/js/framework/components/general/portlet.js",
+                            "{$config.path.src}/js/framework/components/general/toggle.js",
+                            "{$config.path.src}/js/framework/components/general/quicksearch.js",
+                            "{$config.path.src}/js/framework/components/general/scroll-top.js"
+                        ]
+                    },
+                    "bundle": {
+                        "styles": "{$config.output}/demo/default/base/style.bundle.css",
+                        "scripts": "{$config.output}/demo/default/base/scripts.bundle.js"
+                    }
+                },
+                "custom": {
+                    "src": {
+                        "media": [
+                            "{$config.path.src}/media/demo/default/**/*.*"
+                        ]
+                    },
+                    "output": {
+                        "media": "{$config.output}/demo/default/media/"
+                    }
+                }
+            }
+        },
+        "app": {
+            "src": {
+                "media": [
+                    "{$config.path.src}/media/app/**/*.*"
+                ]
+            },
+            "output": {
+                "media": "{$config.output}/app/media"
+            }
+        }
+    }
+}

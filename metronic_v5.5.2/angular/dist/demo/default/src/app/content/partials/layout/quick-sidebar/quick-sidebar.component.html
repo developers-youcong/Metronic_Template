@@ -1,0 +1,31 @@
+<!-- begin::Quick Sidebar -->
+<!-- <div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light"> -->
+<div class="m-quick-sidebar__content">
+	<span id="m_quick_sidebar_close" class="m-quick-sidebar__close">
+		<i class="la la-close"></i>
+	</span>
+
+	<ngb-tabset>
+		<ngb-tab title="Messages">
+			<ng-template ngbTabContent>
+				<m-messenger></m-messenger>
+			</ng-template>
+		</ngb-tab>
+		<ngb-tab title="Settings">
+			<ng-template ngbTabContent>
+				<m-list-settings></m-list-settings>
+			</ng-template>
+		</ngb-tab>
+		<ngb-tab title="Logs">
+			<ng-template ngbTabContent>
+				<perfect-scrollbar style="height: 90vh;">
+					<m-list-timeline [heading]="'System Logs'" [type]="'system'"></m-list-timeline>
+					<m-list-timeline [heading]="'Application Logs'" [type]="'application'"></m-list-timeline>
+					<m-list-timeline [heading]="'Server Logs'" [type]="'server'"></m-list-timeline>
+				</perfect-scrollbar>
+			</ng-template>
+		</ngb-tab>
+	</ngb-tabset>
+</div>
+<!-- </div> -->
+<!-- end::Quick Sidebar -->
